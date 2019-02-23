@@ -1,8 +1,22 @@
-prog para conversão de unidades computacionais, bit, byte, Mb, MB...
+conv
+===
 
-[install]
+pequeno programa para conversão de unidades computacionais, bit, byte, Mb, MB...
 
-  make
+### [install]
+    $ make
   
-[usage]\n
-  ex: conv 10MB -v
+### [usage]
+    use: conv <valor> <opção>
+    <valor>
+    Ex: 64b
+    Ex: 10Mb
+    Ex: 10.2MB
+
+    <opção>
+    -v    [não utiliza notação cientifica]
+    -h    [exibe essa mensagem]
+
+    <exemplo>
+    ./conv 100.2Kb -v
+
