@@ -1,3 +1,6 @@
 prog para conversão de unidades computacionais, bit, byte, Mb, MB...
 
-use: conv 10MB -v
+[install]
+  make
+[usage]
+  ex: conv 10MB -v
