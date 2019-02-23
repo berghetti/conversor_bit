@@ -17,7 +17,6 @@ int main (int argc, char *argv[]){
 		usage();
 	}
 
-
 	while ((in_arg = getopt (argc, argv, "hv")) != -1){
 		switch (in_arg){
 			case 'h':
