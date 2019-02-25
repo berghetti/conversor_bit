@@ -12,6 +12,9 @@ bool verbose = false;
 int main (int argc, char *argv[]){
 
 	int in_arg;
+	// int *pbit = malloc(sizeof(int *));
+	// int *pKiB;
+
 	int pos = 1;
 	if(argc < 2){
 		usage();
