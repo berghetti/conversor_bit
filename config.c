@@ -102,14 +102,30 @@ void imprimir(float bit){
 
 		printf("%-10s %Gb\n", "bit:", bit);
 		printf("%-10s %GB\n", "byte:", byte);
+
+		printf("\n");
 		printf("%-10s %GKb\n", "kilobit:", Kb);
-		printf("%-10s %GKB\n", "kilobyte:", KB);
-		printf("%-10s %GMb\n", "megabit:", Mb);	
-		printf("%-10s %GMB\n", "megabyte", MB);
-		printf("%-10s %GGb\n", "gigabit:", Gb);	
-		printf("%-10s %GGB\n", "gigabyte", GB);
+		printf("%-10s %GMb\n", "megabit:", Mb);
+		printf("%-10s %GGb\n", "gigabit:", Gb);
 		printf("%-10s %GTb\n", "terabit:", Tb);
+
+		printf("\n");
+		printf("%-10s %GKB\n", "kilobyte:", KB);
+		printf("%-10s %GMB\n", "megabyte:", MB);
+		printf("%-10s %GGB\n", "gigabyte:", GB);
 		printf("%-10s %GTB\n", "terabyte:", TB);
+
+		printf("\n");
+		printf("%-10s %GKib\n", "Kibibit:", Kib);
+		printf("%-10s %GMib\n", "Mebibit:", Mib);
+		printf("%-10s %GGib\n", "Gibibit:", Gib);
+		printf("%-10s %GTib\n", "Tebibit:", Tib);
+
+		printf("\n");
+		printf("%-10s %GKiB\n", "kibibyte:", KiB);
+		printf("%-10s %GMiB\n", "Mebibyte:", MiB);
+		printf("%-10s %GGiB\n", "Gebibyte:", GiB);
+		printf("%-10s %GTiB\n", "Tebibyte:", TiB);
 
 	}
 }
