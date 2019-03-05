@@ -1,13 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
+#include <math.h> 		// for pow()
 #include <stdbool.h>
-#include <string.h> //for strcmp()
-#include "config.h"
+#include <string.h> 	//for strcmp()
+#include "conv.h"
 
 
 void usage(void){
-	printf("%s\nprograma para converter unidades de medidas computacionais b, B, Mb, MB...\n", PACKAGE_NAME);
+	printf("%s\nprograma para converter unidades de medidas computacionais b, B, Mb, MiB...\n", PACKAGE_NAME);
 	printf("use: %s <valor> <opção>\n", PACKAGE);
 	puts("<valor>\n"
 		 "  Ex: 64b\n"
@@ -19,7 +19,8 @@ void usage(void){
 		 "  -h    [exibe essa mensagem]\n");
 
 	puts("<exemplo>\n"
-		 "./conv 100.2Kb -v");
+		 "./conv 100Kb -v\n"
+		 "./conv 50MiB");
 		
 	puts("");
 	
@@ -29,65 +30,96 @@ void usage(void){
 
 float convertForBit(float valor, char *unidade){
 
-		if(strcmp(unidade, "b") == 0){
-			return valor; //bit
-		}
-		else if(strcmp(unidade, "B") == 0){
-			return valor * 8; //byte
-		}
-		else if(strcmp(unidade, "Kb") == 0){
-			return valor * pow(BASE, 3); //kilobit
-		}
-		else if(strcmp(unidade, "KB") == 0){
-			return valor * pow(BASE, 3) * 8; //kilobyte
-		}
-		else if(strcmp(unidade, "Mb") == 0){
-			return valor * pow(BASE, 6); //megabit
-		}
-		else if(strcmp(unidade, "MB") == 0){
-			return valor * pow(BASE, 6) * 8; //megabyte
-		}
-		else if(strcmp(unidade, "Gb") == 0){
-			return valor * pow(BASE, 9) ; //gigabit
-		}
-		else if(strcmp(unidade, "GB") == 0){
-			return valor * pow(BASE, 9) * 8; //gigabyte
-		}
-		else if(strcmp(unidade, "Tb") == 0){
-			return valor * pow(BASE, 12) ; //terabit
-		}
-		else if(strcmp(unidade, "TB") == 0){
-			return valor * pow(BASE, 12) * 8; //terabyte
-		}
+		if(strcmp(unidade, "b") == 0)
+			return valor; 						//bit
 
+		else if(strcmp(unidade, "B") == 0)
+			return valor * 8; 					//byte
+
+		// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+		else if(strcmp(unidade, "Kb") == 0)
+			return valor * pow(BASE_10, 3); 	//kilobit
+
+		else if(strcmp(unidade, "Mb") == 0)
+			return valor * pow(BASE_10, 6); 	//megabit
+
+		else if(strcmp(unidade, "Gb") == 0)
+			return valor * pow(BASE_10, 9) ;	//gigabit
+
+		else if(strcmp(unidade, "Tb") == 0)
+			return valor * pow(BASE_10, 12) ; 	//terabit
+
+		// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		
+		else if(strcmp(unidade, "KB") == 0)
+			return valor * pow(BASE_10, 3) * 8; //kilobyte
+		
+		else if(strcmp(unidade, "MB") == 0)
+			return valor * pow(BASE_10, 6) * 8; //megabyte		
+
+		else if(strcmp(unidade, "GB") == 0)
+			return valor * pow(BASE_10, 9) * 8; //gigabyte
+
+		else if(strcmp(unidade, "TB") == 0)
+			return valor * pow(BASE_10, 12) * 8; //terabyte
+
+		// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		
+		else if(strcmp(unidade, "Kib") == 0)
+			return valor * pow(BASE_2, 10); 	// kibibit
+
+		else if(strcmp(unidade, "Mib") == 0)
+			return valor * pow(BASE_2, 20); 	// Mebibit
+
+		else if(strcmp(unidade, "Gib") == 0)
+			return valor * pow(BASE_2, 30); 	// Gebibit
+
+		else if(strcmp(unidade, "Tib") == 0)
+			return valor * pow(BASE_2, 40); 	// Tebibit
+
+		// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		
+		else if(strcmp(unidade, "KiB") == 0)
+			return valor * pow(BASE_2, 10) * 8;	// Kibibyte
+
+		else if(strcmp(unidade, "MiB") == 0)
+			return valor * pow(BASE_2, 20) * 8;	// Mebibyte
+
+		else if(strcmp(unidade, "GiB") == 0)
+			return valor * pow(BASE_2, 30) *8;  // Gebibyte
+
+		else if(strcmp(unidade, "TiB") == 0)
+			return valor * pow(BASE_2, 40) *8;  // Tebibyte
+
+		else
+			return false;
 }
-
-
 
 
 void imprimir(float bit){
 
 	float byte = bit / 8;
 
-	float Kb = bit / pow(BASE, 3);				// kilobit
-	float Mb = bit / pow(BASE, 6);				// megabit
-	float Gb = bit / pow(BASE, 9);				// gigabit
-	float Tb = bit / pow(BASE, 12);				// terabit
+	float Kb = bit / pow(BASE_10, 3);				// kilobit
+	float Mb = bit / pow(BASE_10, 6);				// megabit
+	float Gb = bit / pow(BASE_10, 9);				// gigabit
+	float Tb = bit / pow(BASE_10, 12);				// terabit
 
-	float KB = bit / pow(BASE, 3) / 8;			// kilobyte
-	float MB = bit / pow(BASE, 6) / 8;			// megabyte
-	float GB = bit / pow(BASE, 9) / 8;			// gigabyte
-	float TB = bit / pow(BASE, 12) / 8;			// terabyte
+	float KB = bit / pow(BASE_10, 3) / 8;			// kilobyte
+	float MB = bit / pow(BASE_10, 6) / 8;			// megabyte
+	float GB = bit / pow(BASE_10, 9) / 8;			// gigabyte
+	float TB = bit / pow(BASE_10, 12) / 8;			// terabyte
 
-	float Kib = bit / pow(2, 10);  				// kibibit
-	float Mib = Kib / pow(2, 10); 				// mebibit
-	float Gib = Kib / pow(2, 20); 				// gibibit
-	float Tib = Kib / pow(2, 30); 				// tebibit
+	float Kib = bit / pow(BASE_2, 10);  			// kibibit
+	float Mib = Kib / pow(BASE_2, 10); 				// mebibit
+	float Gib = Kib / pow(BASE_2, 20); 				// gibibit
+	float Tib = Kib / pow(BASE_2, 30); 				// tebibit
 
-	float KiB = bit / pow(2, 10) / 8;		   // kibibyte
-	float MiB = Kib / pow(2, 10) / 8;          // mebibyte
-	float GiB = Kib / pow(2, 20) / 8;          // gibibyte
-	float TiB = Kib / pow(2, 30) / 8;          // tebibyte
+	float KiB = bit / pow(BASE_2, 10) / 8;		    // kibibyte
+	float MiB = Kib / pow(BASE_2, 10) / 8;          // mebibyte
+	float GiB = Kib / pow(BASE_2, 20) / 8;          // gibibyte
+	float TiB = Kib / pow(BASE_2, 30) / 8;          // tebibyte
 
 
 	if(verbose){

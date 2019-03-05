@@ -4,7 +4,8 @@
 #define PACKAGE "conv"
 #define VERSION "1.0"
 #define PACKAGE_NAME PACKAGE " " VERSION
-#define BASE 10
+#define BASE_10 10
+#define BASE_2  2
 
 extern bool verbose;
 

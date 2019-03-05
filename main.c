@@ -1,9 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <errno.h>
 #include <stdbool.h>
-#include <unistd.h>
-#include "config.h"
+#include <unistd.h>		// for getopt()
+#include "conv.h"
 
 
 bool verbose = false;
@@ -30,6 +29,7 @@ int main (int argc, char *argv[]){
 		}
 	}
 
+
 	char *unidade;
 	// separa o valor da unidade informada, ex: 10MB, valor = 10, unidade = MB
 	float valor = strtof(argv[pos], &unidade);
@@ -40,7 +40,10 @@ int main (int argc, char *argv[]){
 	}
 	else{
 		float bits = convertForBit(valor, unidade);
-		imprimir(bits);
+		if (bits)
+			imprimir(bits);
+		else
+			usage();
 	}
 
 	return 0;

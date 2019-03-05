@@ -1,13 +1,13 @@
 all: conv
 
-conv: main.o config.o
-	gcc main.o config.o -o conv
+conv: main.o conv.o
+	gcc main.o conv.o -o conv
 
 main.o: main.c
 	gcc -c main.c -o main.o
 
-config.o: config.c
-	gcc -c config.c -o config.o
+config.o: conv.c
+	gcc -c conv.c -o conv.o
 
 clean:
 	rm *.o
