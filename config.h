@@ -18,10 +18,10 @@ void usage(void);
 func recebe o valor informado junto com a unidade, ex: 100Mb,
 então retorna o valor convertiro em bit(s).
  */
-float convertForBit(float valor, int unidade);
+float convertForBit(float valor, char *unidade);
 
 /*
-func recebe o valor em bit e exibe,
+func recebe o valor em bit e exibe os valores convertidos em outras unidades,
 caso a variavel verbose seja verdadeira (argumento -v)
 a exibição com notação cientefica não é exibida,
 mas sim o valor por extenso.

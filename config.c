@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <stdbool.h>
+#include <string.h> //for strcmp()
 #include "config.h"
 
 
@@ -26,22 +27,42 @@ void usage(void){
 }
 
 
-float convertForBit(float valor, int unidade){
-	float bits;
-	switch(unidade){
-		case 1: bits = valor; break; //bit
-		case 2: bits = valor * 8; break; //byte
-		case 3: bits = valor * pow(BASE, 3); break; //kilobit
-		case 4: bits = valor * pow(BASE, 3) * 8; break;  //kilobyte
-		case 5: bits = valor * pow(BASE, 6); break; //megabit
-		case 6: bits = valor * pow(BASE, 6) * 8; break; //megabyte
-		case 7: bits = valor * pow(BASE, 9) ; break; //gigabit
-		case 8: bits = valor * pow(BASE, 9) * 8; break; //gigabyte
-		case 9: bits = valor * pow(BASE, 12) ; break; //terabit
-		case 10: bits = valor * pow(BASE, 12) * 8; break; //terabyte		
-	}
-	return bits;
+float convertForBit(float valor, char *unidade){
+
+		if(strcmp(unidade, "b") == 0){
+			return valor; //bit
+		}
+		else if(strcmp(unidade, "B") == 0){
+			return valor * 8; //byte
+		}
+		else if(strcmp(unidade, "Kb") == 0){
+			return valor * pow(BASE, 3); //kilobit
+		}
+		else if(strcmp(unidade, "KB") == 0){
+			return valor * pow(BASE, 3) * 8; //kilobyte
+		}
+		else if(strcmp(unidade, "Mb") == 0){
+			return valor * pow(BASE, 6); //megabit
+		}
+		else if(strcmp(unidade, "MB") == 0){
+			return valor * pow(BASE, 6) * 8; //megabyte
+		}
+		else if(strcmp(unidade, "Gb") == 0){
+			return valor * pow(BASE, 9) ; //gigabit
+		}
+		else if(strcmp(unidade, "GB") == 0){
+			return valor * pow(BASE, 9) * 8; //gigabyte
+		}
+		else if(strcmp(unidade, "Tb") == 0){
+			return valor * pow(BASE, 12) ; //terabit
+		}
+		else if(strcmp(unidade, "TB") == 0){
+			return valor * pow(BASE, 12) * 8; //terabyte
+		}
+
 }
+
+
 
 
 void imprimir(float bit){
