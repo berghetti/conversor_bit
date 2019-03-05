@@ -18,5 +18,6 @@ pequeno programa para conversão de unidades computacionais, bit, byte, Mb, MB..
     -h    [exibe essa mensagem]
 
     <exemplo>
-    ./conv 100.2Kb -v
+    ./conv 100Kb -v
+    ./conv 20MiB
 
