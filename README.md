@@ -5,6 +5,7 @@ pequeno programa para conversão de unidades computacionais, bit, byte, Mb, MB..
 
 ### [install]
     $ make
+    $ make install
   
 ### [usage]
     use: conv <valor> <opção>
