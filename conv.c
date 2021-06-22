@@ -1,36 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h> 		// for pow()
+#include <math.h>	// for pow()
 #include <stdbool.h>
 #include <string.h> 	//for strcmp()
 #include "conv.h"
 
+extern bool verbose;
 
-void usage(void){
-	printf("%s\nprograma para converter unidades de medidas computacionais b, B, Mb, MiB...\n", PACKAGE_NAME);
-	printf("use: %s <valor> <opção>\n", PACKAGE);
-	puts("<valor>\n"
-		 "  Ex: 64b\n"
-		 "  Ex: 10Mb\n"
-		 "  Ex: 10.2MB\n");
+float to_bit(float valor, char *unidade){
 
-	puts("<opção>\n"
-		 "  -v    [não utiliza notação cientifica]\n"
-		 "  -h    [exibe essa mensagem]\n");
-
-	puts("<exemplo>\n"
-		 "./conv 100Kb -v\n"
-		 "./conv 50MiB");
-		
-	puts("");
-	
-	exit(EXIT_FAILURE);
-}
-
-
-float convertForBit(float valor, char *unidade){
-
-		if(strcmp(unidade, "b") == 0)
+		if(!strcmp(unidade, "b"))
 			return valor; 						//bit
 
 		else if(strcmp(unidade, "B") == 0)
@@ -51,12 +30,12 @@ float convertForBit(float valor, char *unidade){
 			return valor * pow(BASE_10, 12) ; 	//terabit
 
 		// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-		
+
 		else if(strcmp(unidade, "KB") == 0)
 			return valor * pow(BASE_10, 3) * 8; //kilobyte
-		
+
 		else if(strcmp(unidade, "MB") == 0)
-			return valor * pow(BASE_10, 6) * 8; //megabyte		
+			return valor * pow(BASE_10, 6) * 8; //megabyte
 
 		else if(strcmp(unidade, "GB") == 0)
 			return valor * pow(BASE_10, 9) * 8; //gigabyte
@@ -65,7 +44,7 @@ float convertForBit(float valor, char *unidade){
 			return valor * pow(BASE_10, 12) * 8; //terabyte
 
 		// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-		
+
 		else if(strcmp(unidade, "Kib") == 0)
 			return valor * pow(BASE_2, 10); 	// kibibit
 
@@ -79,7 +58,7 @@ float convertForBit(float valor, char *unidade){
 			return valor * pow(BASE_2, 40); 	// Tebibit
 
 		// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-		
+
 		else if(strcmp(unidade, "KiB") == 0)
 			return valor * pow(BASE_2, 10) * 8;	// Kibibyte
 
